@@ -1,0 +1,74 @@
+<nav class="navbar sticky-top navbar-dark bg-dark " id="topMenufix">
+    
+    <div  class="container" *ngIf="(authService.user | async)">
+    
+        
+        <div class="signElt"><div class="sign"></div><p>Connecté</p>
+        <p >{{ (authService.user | async)?.email }}</p></div>
+        
+      
+    </div>
+</nav>
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" id="menuMove">
+  <a class="navbar-brand" routerLink="home">
+  {{title}}
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon "></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto font-weight-bold ">
+      <li class="nav-item ">
+        <a class="nav-link text-primary" routerLink="">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-primary" routerLink="club">Club</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-primary" routerLink="krav">Le Krav Maga</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-primary" routerLink="inscription">Inscription</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link "href="https://www.facebook.com/KRAVMAGACLUB95/?nr"><fa-icon [icon]="faFacebook"></fa-icon></a> 
+      </li> 
+      <li class="nav-item">
+        <a class="nav-link"href="https://www.youtube.com/watch?v=8Y6OaY88cPk"><fa-icon [icon]="faYoutube"></fa-icon></a> 
+      </li> 
+      <li class="nav-item">
+        <a class="nav-link"href="mailto:kravmagaenghien@outlook.fr"><fa-icon [icon]="faAt"></fa-icon></a> 
+      </li> 
+    </ul>
+
+    <a class="btn btn-outline-light btn-sm" *ngIf="!(authService.user | async)" routerLink="acces"  role="button" >Accès membres</a>
+    
+    <div class="dropdown"  *ngIf="(authService.user | async)">
+      
+      <button class="btn btn-outline-light  btn-sm dropdown-toggle" type="button"  data-toggle="dropdown">Mon compte
+       
+      </button>
+      
+      <ul class="dropdown-menu">
+        <li><a class="nav-link text-primary" routerLink="dashboard">Dashboard</a></li>
+        <li><a class="nav-link text-primary" routerLink="members">Members</a></li>
+        <li><a class="nav-link text-primary" routerLink="profil">Profil</a></li>
+        <li><a class="btn btn-outline-danger btn-sm" *ngIf="(authService.user | async)" (click)="logout()"   role="button" >Déconnection</a></li>
+      </ul>
+    </div>
+  
+    
+  </div>
+
+</nav>
+
+
+<ol class="breadcrumb" *ngIf="(authService.user | async)">
+  <li><a routerLink="dashboard"> Dashboard / </a></li>
+  <li><a routerLink="members"> Members / </a></li>
+  <li><a routerLink="profil"> Profil</a></li>
+</ol>
