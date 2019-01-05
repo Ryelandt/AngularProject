@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AccesComponent implements OnInit {
   
-  registerForm: FormGroup;
+  loginForm: FormGroup;
   submitted = false;
   accesAdm :any;
   accesPwd : any;
@@ -26,7 +26,7 @@ export class AccesComponent implements OnInit {
 
   ngOnInit() {
    
-    this.registerForm = this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(6)]]
     });
@@ -34,17 +34,17 @@ export class AccesComponent implements OnInit {
     
   }
   get f() { 
-    return this.registerForm.controls; 
+    return this.loginForm.controls; 
   }
 
   onSubmit() {
     
     console.log(this.user.email+this.user.password)
     this.submitted = true;
-    this.accesAdm = this.registerForm.controls['email'].value;
-    this.accesPwd = this.registerForm.controls['password'].value;
+    this.accesAdm = this.loginForm.controls['email'].value;
+    this.accesPwd = this.loginForm.controls['password'].value;
     // stop here if form is invalid
-    if (this.registerForm.invalid) {
+    if (this.loginForm.invalid) {
         return;
     }
     // condition for admin

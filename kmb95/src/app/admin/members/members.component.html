@@ -6,6 +6,11 @@
     </div>
     <div class="col-6">
       <p>Liste</p>
+      <ul>
+        <li *ngFor="let member of (listMemb | async)" [class.done]="member.done">
+          {{ member.content }}
+        </li>
+      </ul>
       <div class="row">
         <div class="col-6">
           <p>Email</p> 
@@ -15,6 +20,44 @@
           <p>Id</p> 
         </div>
       </div> 
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>NOUVEL INSCRIT</h2> 
+      <div class="row">
+        <div class="col-6">
+          <p>Formulaire</p>
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+              
+      
+              <div class="form-group">
+                  <label>Email</label>
+                  <input type="text" formControlName="email"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" [(ngModel)]="user.email" placeholder="nom@mail.com"/>
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                      <div *ngIf="f.email.errors.required">Email obligatoire</div>
+                      <div *ngIf="f.email.errors.email">Email non-valide</div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" [(ngModel)]="user.password" placeholder="Mot de passe"/>
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                      <div *ngIf="f.password.errors.required">Mot de passe obligatoire</div>
+                      <div *ngIf="f.password.errors.minlength">6 charactères requis</div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <button [disabled]="loading" class="btn btn-primary">Confirmer</button>
+              </div>
+          </form>
+        </div>
+        <div class="col-6">
+          <p>Confirmation</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
