@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   faAt = faAt;
   title = 'KMB95';
   
-  constructor( private authService:AuthService, private router: Router) { 
+  constructor( public authService:AuthService, private router: Router) { 
   
     
     }

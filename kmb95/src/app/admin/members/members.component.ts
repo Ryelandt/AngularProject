@@ -22,7 +22,7 @@ export class MembersComponent implements OnInit {
   };
  
  
-  constructor( private formBuilder: FormBuilder,private authService:AuthService, private db: AngularFireDatabase) { 
+  constructor( private formBuilder: FormBuilder,public authService:AuthService, private db: AngularFireDatabase) { 
    
   }
   
